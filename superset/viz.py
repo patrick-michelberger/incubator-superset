@@ -1816,7 +1816,6 @@ class DeckScreengrid(BaseDeckGLViz):
     viz_type = 'deck_screengrid'
     verbose_name = _('Deck.gl - Screen Grid')
 
-
 class DeckGrid(BaseDeckGLViz):
 
     """deck.gl's DeckLayer"""
@@ -1831,6 +1830,14 @@ class DeckHex(BaseDeckGLViz):
 
     viz_type = 'deck_hex'
     verbose_name = _('Deck.gl - 3D HEX')
+
+
+class PredictionScreengrid(BaseDeckGLViz):
+
+    """prediction screen grid layer"""
+
+    viz_type = 'prediction_screengrid'
+    verbose_name = _('Prediction Screen Grid')
 
 
 class EventFlowViz(BaseViz):

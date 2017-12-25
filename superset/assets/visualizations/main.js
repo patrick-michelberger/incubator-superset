@@ -1,4 +1,5 @@
 /* eslint-disable global-require */
+
 const vizMap = {
   area: require('./nvd3_vis.js'),
   bar: require('./nvd3_vis.js'),
@@ -40,5 +41,6 @@ const vizMap = {
   deck_screengrid: require('./deckgl/screengrid.jsx'),
   deck_grid: require('./deckgl/grid.jsx'),
   deck_hex: require('./deckgl/hex.jsx'),
+  prediction_screengrid: require('./odm/prediction_screengrid.jsx'),
 };
 export default vizMap;

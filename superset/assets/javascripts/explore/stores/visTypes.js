@@ -1332,6 +1332,42 @@ export const visTypes = {
       sections.NVD3TimeSeries[1],
     ],
   },
+
+  prediction_screengrid: {
+    label: t('Prediction Screen Grid'),
+    requiresTime: true,
+    controlPanelSections: [
+      {
+        label: t('Query'),
+        expanded: true,
+        controlSetRows: [
+          ['longitude', 'latitude'],
+          ['groupby', 'size'],
+          ['row_limit'],
+        ],
+      },
+      {
+        label: t('Map'),
+        controlSetRows: [
+          ['mapbox_style', 'viewport'],
+        ],
+      },
+      {
+        label: t('Grid'),
+        controlSetRows: [
+          ['grid_size', 'color_picker'],
+        ],
+      },
+    ],
+    controlOverrides: {
+      size: {
+        label: t('Weight'),
+        description: t("Metric used as a weight for the grid's coloring"),
+        validators: [v.nonEmpty],
+      },
+    },
+  },
+
 };
 
 export default visTypes;
