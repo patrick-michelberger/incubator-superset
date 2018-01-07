@@ -6,7 +6,11 @@ import {Modal} from 'react-bootstrap';
 
 import DeckGLContainer from '../deckgl/DeckGLContainer';
 
+import SelectControl from '../../javascripts/explore/components/controls/SelectControl';
 import TextControl from '../../javascripts/explore/components/controls/TextControl';
+
+import Neighborhoods from './neighborhoods.json';
+import Dayofweeks from './dayofweek.json';
 
 import {
     XAxis,
@@ -64,11 +68,17 @@ class PredictionScreenGrid extends Component {
                     disabled: false,
                     data: getRandomSeriesData(totalValues)
                 }
-            ]
+            ],
+            neigborhoodValue: 0,
+            dayofweekValue: 'mon',
+            numberofdriversValue: 4
         };
 
         this.toggleModal = this.toggleModal.bind(this);
         this.onEnterModal = this.onEnterModal.bind(this);
+        this.setNeighborhood = this.setNeighborhood.bind(this);
+        this.setDayofweek = this.setDayofweek.bind(this);
+        this.setNumberofdrivers = this.setNumberofdrivers.bind(this);
     }
 
     toggleModal(info) {
@@ -78,6 +88,18 @@ class PredictionScreenGrid extends Component {
 
     onEnterModal() {
         console.log("on enter modal");
+    };
+
+    setNeighborhood(neigborhoodValue) {
+        this.setState({neigborhoodValue});
+    };
+
+    setDayofweek(dayofweekValue) {
+        this.setState({dayofweekValue});
+    };
+
+    setNumberofdrivers(numberofdriversValue) {
+        this.setState({numberofdriversValue});
     };
 
     render() {
@@ -134,15 +156,6 @@ class PredictionScreenGrid extends Component {
                     layers={[layer]}
                     mapStyle={fd.mapbox_style}
                     setControlValue={setControlValue}
-                />
-                <TextControl
-                    isFloat
-                    onChange={() => {
-                    }}
-                    onFocus={() => {
-
-                    }}
-                    value={"Test"}
                 />
                 {info.object && info.object.position ? <Modal
                     show={this.state.showModal}
@@ -209,6 +222,45 @@ class PredictionScreenGrid extends Component {
                                     </ul>
                                 ) : <span>N/A</span>}
                             </div>
+
+
+                            <hr/>
+                            <h4>
+                                <b>Set Neighborhood</b>
+                            </h4>
+
+
+                            <SelectControl
+                                name="neighborhood"
+                                options={Neighborhoods}
+                                onChange={this.setNeighborhood}
+                                value={this.state.neigborhoodValue}
+                            />
+
+                            <hr/>
+
+                            <h4>
+                                <b>Set Day of Week</b>
+                            </h4>
+
+                            <SelectControl
+                                name="dayofweek"
+                                options={Dayofweeks}
+                                onChange={this.setDayofweek}
+                                value={this.state.dayofweekValue}
+                            />
+
+                            <hr/>
+
+                            <h4>
+                                <b>Set Number of Drivers</b>
+                            </h4>
+
+                            <TextControl
+                                value={this.state.numberofdriversValue}
+                                onChange={this.setNumberofdrivers}
+                                isFloat
+                            />
                         </div>
                     </Modal.Body>
                 </Modal>

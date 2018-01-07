@@ -1,0 +1,138 @@
+[
+  {
+    "value": 0,
+    "label": "adams"
+  },
+  {
+    "value": 1,
+    "label": "atlantic"
+  },
+  {
+    "value": 2,
+    "label": "belltown"
+  },
+  {
+    "value": 3,
+    "label": "broadway"
+  },
+  {
+    "value": 4,
+    "label": "centralbusinessdistrict"
+  },
+  {
+    "value": 5,
+    "label": "eastlake"
+  },
+  {
+    "value": 6,
+    "label": "eastqueenanne"
+  },
+  {
+    "value": 7,
+    "label": "firsthill"
+  },
+  {
+    "value": 8,
+    "label": "fremont"
+  },
+  {
+    "value": 9,
+    "label": "greenlake"
+  },
+  {
+    "value": 10,
+    "label": "greenwood"
+  },
+  {
+    "value": 11,
+    "label": "industrialdistrict"
+  },
+  {
+    "value": 12,
+    "label": "interbay"
+  },
+  {
+    "value": 13,
+    "label": "internationaldistrict"
+  },
+  {
+    "value": 14,
+    "label": "lowerqueenanne"
+  },
+  {
+    "value": 15,
+    "label": "loyalheights"
+  },
+  {
+    "value": 16,
+    "label": "minor"
+  },
+  {
+    "value": 17,
+    "label": "montlake"
+  },
+  {
+    "value": 18,
+    "label": "northqueenanne"
+  },
+  {
+    "value": 19,
+    "label": "phinneyridge"
+  },
+  {
+    "value": 20,
+    "label": "pike-market"
+  },
+  {
+    "value": 21,
+    "label": "pioneersquare"
+  },
+  {
+    "value": 22,
+    "label": "ravenna"
+  },
+  {
+    "value": 23,
+    "label": "roosevelt"
+  },
+  {
+    "value": 24,
+    "label": "southlakeunion"
+  },
+  {
+    "value": 25,
+    "label": "stevens"
+  },
+  {
+    "value": 26,
+    "label": "sunsethill"
+  },
+  {
+    "value": 27,
+    "label": "universitydistrict"
+  },
+  {
+    "value": 28,
+    "label": "wallingford"
+  },
+  {
+    "value": 29,
+    "label": "westlake"
+  },
+  {
+    "value": 30,
+    "label": "westqueenanne"
+  },
+  {
+    "value": 31,
+    "label": "westwoodland"
+  },
+  {
+    "value": 32,
+    "label": "whittierheights"
+  },
+  {
+    "value": 33,
+    "label": "yeslerterrace"
+  }
+]
