@@ -1,17 +1,20 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import {ScreenGridLayer} from 'deck.gl';
-import '../../node_modules/react-vis/dist/style.css';
+import {ScreenGridLayer, GeoJsonLayer} from 'deck.gl';
 import {Modal} from 'react-bootstrap';
 
 import DeckGLContainer from '../deckgl/DeckGLContainer';
 
+// Controls
 import SelectControl from '../../javascripts/explore/components/controls/SelectControl';
 import TextControl from '../../javascripts/explore/components/controls/TextControl';
 
+// Data
 import Neighborhoods from './neighborhoods.json';
 import Dayofweeks from './dayofweek.json';
+const data_geojson = require('./neighborhoods_geo.json');
 
+// Initial Dummy Chart
 import {
     XAxis,
     YAxis,
@@ -20,6 +23,7 @@ import {
     LineSeries,
     DiscreteColorLegend
 } from 'react-vis';
+import '../../node_modules/react-vis/dist/style.css';
 
 import Highlight from './highlight';
 const totalValues = 100;
@@ -82,7 +86,6 @@ class PredictionScreenGrid extends Component {
     }
 
     toggleModal(info) {
-        console.log("toggleModal: info: ", info);
         this.setState({showModal: !this.state.showModal, info: info});
     }
 
@@ -121,16 +124,36 @@ class PredictionScreenGrid extends Component {
 
         // Passing a layer creator function instead of a layer since the
         // layer needs to be regenerated at each render
-        const layer = () => new ScreenGridLayer({
+
+        /*
+         const layer = () => new ScreenGridLayer({
+         id: `screengrid-layer-${slice.containerId}`,
+         data,
+         pickable: true,
+         cellSizePixels: fd.grid_size,
+         minColor: [c.r, c.g, c.b, 0],
+         maxColor: [c.r, c.g, c.b, 255 * c.a],
+         outline: false,
+         getWeight: d => d.weight || 0,
+         onClick: info => this.toggleModal(info)
+         });
+         */
+        const colorScale = r => [r * 255, 140 * r, 200 * (1 - r)];
+
+        const layer = () => new GeoJsonLayer({
             id: `screengrid-layer-${slice.containerId}`,
-            data,
+            data: data_geojson,
+            opacity: 0.5,
+            stroked: true,
+            filled: true,
+            extruded: false,
+            wireframe: false,
+            getFillColor: f => {
+                return colorScale(Math.random());
+            },
+            getLineColor: f => [0, 0, 0],
             pickable: true,
-            cellSizePixels: fd.grid_size,
-            minColor: [c.r, c.g, c.b, 0],
-            maxColor: [c.r, c.g, c.b, 255 * c.a],
-            outline: false,
-            getWeight: d => d.weight || 0,
-            onClick: info => this.toggleModal(info)
+            getPickingInfo: info => this.toggleModal(info)
         });
 
         const {series, lastDrawLocation} = this.state;
@@ -157,19 +180,16 @@ class PredictionScreenGrid extends Component {
                     mapStyle={fd.mapbox_style}
                     setControlValue={setControlValue}
                 />
-                {info.object && info.object.position ? <Modal
+                <Modal
                     show={this.state.showModal}
                     onHide={this.toggleModal}
                     onEnter={this.onEnterModal}
                     bsSize="lg"
                 >
                     <Modal.Header closeButton>
-                        <Modal.Title>Demand Prediction for
-                            Lat: {info.object.position[0]} |
-                            Lon: {info.object.position[1]}</Modal.Title>
+                        <Modal.Title>Demand Prediction</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <div>Weight: {info.object.weight}</div>
                         <div className="example-with-click-me">
                             <div className="legend">
                                 <DiscreteColorLegend
@@ -264,7 +284,6 @@ class PredictionScreenGrid extends Component {
                         </div>
                     </Modal.Body>
                 </Modal>
-                    : null}
             </div>
         )
 
