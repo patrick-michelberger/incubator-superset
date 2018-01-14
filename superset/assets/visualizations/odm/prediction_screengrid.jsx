@@ -12,7 +12,7 @@ import TextControl from '../../javascripts/explore/components/controls/TextContr
 // Data
 import Neighborhoods from './neighborhoods.json';
 import Dayofweeks from './dayofweek.json';
-const data_geojson = require('./neighborhoods_geo.json');
+const data_geojson = require('./seattle_neighborhoods.geojson.json');
 
 // Initial Dummy Chart
 import {
